@@ -1,1 +1,314 @@
 
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-PUL | Sürətli Kredit</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #020617;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Card */
+        .glass-panel {
+            background: rgba(17, 25, 40, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Neon Glows */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5), 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+        
+        .input-field:focus {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Button Gradient & Glow */
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Glitch Effect for the Final Text */
+        .glitch-wrapper {
+            position: relative;
+        }
+        
+        .glitch {
+            position: relative;
+            color: #ef4444;
+            font-weight: 900;
+            text-shadow: 2px 2px 0px #000;
+            animation: glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+        }
+        
+        .glitch::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: -2px;
+            width: 100%;
+            height: 100%;
+            color: #ff00c1;
+            background: #020617;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 2px;
+            width: 100%;
+            height: 100%;
+            color: #00fff9;
+            background: #020617;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(20px, 9999px, 16px, 0); }
+            20% { clip: rect(66px, 9999px, 8px, 0); }
+            40% { clip: rect(5px, 9999px, 86px, 0); }
+            60% { clip: rect(32px, 9999px, 5px, 0); }
+            80% { clip: rect(80px, 9999px, 44px, 0); }
+            100% { clip: rect(12px, 9999px, 67px, 0); }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(78px, 9999px, 12px, 0); }
+            20% { clip: rect(5px, 9999px, 67px, 0); }
+            40% { clip: rect(54px, 9999px, 23px, 0); }
+            60% { clip: rect(12px, 9999px, 89px, 0); }
+            80% { clip: rect(34px, 9999px, 2px, 0); }
+            100% { clip: rect(45px, 9999px, 45px, 0); }
+        }
+        
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /* Animations for sections */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen flex items-center justify-center p-4">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-600/20 rounded-full blur-[100px]"></div>
+    </div>
+
+    <main class="w-full max-w-md relative">
+        
+        <!-- SECTION 1: HERO -->
+        <div id="hero-section" class="text-center slide-up">
+            <!-- Logo -->
+            <div class="mb-8 relative inline-block group cursor-pointer">
+                <h1 class="text-6xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 neon-text pb-2">
+                    E-PUL
+                </h1>
+                <div class="absolute -inset-1 bg-blue-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition duration-500"></div>
+            </div>
+
+            <!-- Slogan -->
+            <p class="text-slate-300 text-lg mb-10 leading-relaxed font-light">
+                Sürətli kredit. Tam etibar.<br>
+                <span class="text-cyan-400 font-medium">Maksimal rahatlıq.</span>
+            </p>
+
+            <!-- CTA Button -->
+            <button onclick="showForm()" class="btn-primary w-full py-4 rounded-2xl font-bold text-lg tracking-wide uppercase">
+                Müraciəti doldur
+            </button>
+
+            <!-- Footer trust indicators -->
+            <div class="mt-12 flex justify-center space-x-6 opacity-40 grayscale">
+                <div class="h-8 w-12 bg-white/20 rounded"></div>
+                <div class="h-8 w-12 bg-white/20 rounded"></div>
+                <div class="h-8 w-12 bg-white/20 rounded"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: FORM -->
+        <div id="form-section" class="hidden glass-panel rounded-3xl p-8 w-full border border-slate-700/50">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-2">Anketi tamamlayın</h2>
+                <div class="h-1 w-16 bg-blue-500 mx-auto rounded-full"></div>
+            </div>
+
+            <form onsubmit="handleSubmit(event)" class="space-y-5">
+                <!-- Ad -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Ad</label>
+                    <input type="text" placeholder="Adınız" required
+                        class="input-field w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+
+                <!-- Soyad -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Soyad</label>
+                    <input type="text" placeholder="Soyadınız" required
+                        class="input-field w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+
+                <!-- Ata adı -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Ata adı</label>
+                    <input type="text" placeholder="Atanızın adı" required
+                        class="input-field w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+
+                <!-- Telefon -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Telefon nömrəsi</label>
+                    <input type="tel" placeholder="+994 50 000 00 00" required
+                        class="input-field w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="btn-primary w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 group">
+                        <span>Təsdiq et</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 group-hover:translate-x-1 transition-transform">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            
+            <button onclick="goBack()" class="mt-6 w-full text-sm text-slate-500 hover:text-white transition-colors">
+                ← Geri qayıt
+            </button>
+        </div>
+
+        <!-- SECTION 3: RESULT (FAKE MESSAGE) -->
+        <div id="result-section" class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center">
+            <div class="glitch-wrapper scale-150 md:scale-[2]">
+                <h1 class="glitch text-5xl md:text-7xl font-black uppercase tracking-widest leading-none" data-text="ХАХАХАХАХ ФЕЙК">
+                    SIKTIR<br>PEYSER ISMAIL
+                </h1>
+            </div>
+            <div class="mt-8 opacity-0 animate-[fadeIn_1s_ease-in_forwards_1s]">
+                <p class="text-red-400 font-mono text-sm">SYSTEM_FAILURE: 0x00F4K3</p>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const heroSection = document.getElementById('hero-section');
+        const formSection = document.getElementById('form-section');
+        const resultSection = document.getElementById('result-section');
+
+        function showForm() {
+            // Fade out hero
+            heroSection.style.opacity = '0';
+            heroSection.style.transform = 'translateY(-20px)';
+            heroSection.style.transition = 'all 0.4s ease-in';
+
+            setTimeout(() => {
+                heroSection.classList.add('hidden');
+                formSection.classList.remove('hidden');
+                
+                // Add animation classes to form
+                formSection.classList.add('fade-in');
+                formSection.classList.add('slide-up');
+            }, 400);
+        }
+
+        function goBack() {
+            formSection.classList.add('hidden');
+            formSection.classList.remove('fade-in', 'slide-up');
+            
+            heroSection.classList.remove('hidden');
+            // Reset styles for fade in
+            setTimeout(() => {
+                heroSection.style.opacity = '1';
+                heroSection.style.transform = 'translateY(0)';
+            }, 50);
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            // "Loading" effect on button
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<div class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mx-auto"></div>';
+            btn.disabled = true;
+
+            // Fake processing delay
+            setTimeout(() => {
+                // Hide form abruptly
+                formSection.style.display = 'none';
+                document.querySelector('.fixed').style.display = 'none'; // Hide bg blobs for dramatic effect
+                document.body.style.backgroundColor = '#000'; // Pure black
+                document.body.style.backgroundImage = 'none';
+
+                // Show Result
+                resultSection.classList.remove('hidden');
+                
+                // Add some chaotic shaking to body
+                document.body.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+            }, 1500);
+        }
+
+        // Add shake keyframes dynamically
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes shake {
+                10%, 90% { transform: translate3d(-1px, 0, 0); }
+                20%, 80% { transform: translate3d(2px, 0, 0); }
+                30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+                40%, 60% { transform: translate3d(4px, 0, 0); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
